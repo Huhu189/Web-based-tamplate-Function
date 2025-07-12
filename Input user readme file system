@@ -1,0 +1,223 @@
+Baik! Di bawah ini adalah panduan lengkap dan mudah untuk:
+
+1. Menambahkan kotak isian (form input) baru ke sistem kirim pesan ke Google Sheets.
+
+
+2. Menjelaskan cara kerja setiap bagian (HTML, CSS, JS).
+
+
+3. Cara membuat replika sistem ini hanya dalam file .txt biasa, agar kamu bisa simpan atau salin dengan mudah.
+
+
+
+
+---
+
+✅ BAGIAN 1: Struktur Dasar Form
+
+Form ini akan memiliki 3 input:
+
+Nama (name)
+
+Email (email)
+
+Pesan (message)
+
+
+Contoh HTML sederhananya:
+
+<form id="form">
+  <input type="text" id="name" placeholder="Nama">
+  <input type="email" id="email" placeholder="Email">
+  <textarea id="message" placeholder="Pesan"></textarea>
+  <button type="submit">Kirim</button>
+  <p id="status"></p>
+</form>
+
+
+---
+
+✅ BAGIAN 2: Instruksi Menambahkan Input Baru
+
+Misalnya kamu ingin menambahkan "Nomor HP":
+
+✏️ Langkah-langkah:
+
+1. Tambahkan input baru di HTML:
+
+
+
+<input type="text" id="phone" placeholder="Nomor HP">
+
+2. Tambahkan ke JavaScript saat mengirim data:
+
+
+
+const phone = document.getElementById('phone').value;
+
+3. Tambahkan ke bagian body JSON:
+
+
+
+body: JSON.stringify({ name, email, phone, message })
+
+4. Tambahkan kolom di Google Sheets agar data masuk ke kolom Nomor HP.
+
+
+
+
+---
+
+✅ BAGIAN 3: Penjelasan Tiap Bagian
+
+🔷 HTML (Tampilan)
+
+HTML berfungsi untuk menampilkan form input ke pengguna. Misalnya:
+
+<input type="text" id="name" placeholder="Nama">
+
+Artinya:
+
+Membuat kotak teks
+
+ID: name (digunakan di JS)
+
+Placeholder: teks contoh di dalam kotak
+
+
+
+---
+
+🔷 CSS (Desain)
+
+CSS dipakai untuk memperindah tampilan. Contoh:
+
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+Artinya:
+
+Kotak input punya padding 10 piksel
+
+Punya garis abu-abu di sekelilingnya
+
+
+
+---
+
+🔷 JavaScript (Logika)
+
+JavaScript bertugas untuk:
+
+Membaca isi form
+
+Mengirim ke Google Sheets
+
+Memberikan notifikasi sukses/gagal
+
+
+Contoh:
+
+fetch(scriptURL, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ name, email, message })
+})
+
+Artinya:
+
+Kirim data ke URL Google Script
+
+Format pengiriman: JSON
+
+Data yang dikirim: name, email, message
+
+
+
+---
+
+✅ BAGIAN 4: Contoh Isi Lengkap dan Cara Kerja (versi teks .txt)
+
+Berikut isi file .txt sederhana yang bisa kamu simpan sebagai dokumentasi atau referensi.
+
+
+---
+
+Nama file: kirim_form_ke_sheets.txt
+
+# Sistem Kirim Pesan ke Google Sheets
+
+## INPUT
+Form memiliki:
+- Nama (id="name")
+- Email (id="email")
+- Nomor HP (id="phone")
+- Pesan (id="message")
+
+## KERJA
+1. User isi form
+2. Tekan tombol "Kirim"
+3. JavaScript membaca semua input
+4. JavaScript kirim ke URL Google Apps Script
+5. Google Sheets menerima & simpan ke baris baru
+6. User lihat status: "Pesan terkirim!"
+
+## GOOGLE SHEETS
+Kolom: Timestamp | Nama | Email | Nomor HP | Pesan
+
+## HTML FORM
+<form id="form">
+  <input id="name" placeholder="Nama">
+  <input id="email" placeholder="Email">
+  <input id="phone" placeholder="Nomor HP">
+  <textarea id="message" placeholder="Pesan"></textarea>
+  <button>Kirim</button>
+  <p id="status"></p>
+</form>
+
+## JAVASCRIPT
+<script>
+  const scriptURL = 'YOUR_GOOGLE_SCRIPT_URL';
+  document.getElementById('form').addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const message = document.getElementById('message').value;
+
+    fetch(scriptURL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, phone, message })
+    })
+    .then(() => {
+      document.getElementById('status').innerText = 'Pesan terkirim!';
+      document.getElementById('form').reset();
+    })
+    .catch(() => {
+      document.getElementById('status').innerText = 'Gagal mengirim.';
+    });
+  });
+</script>
+
+
+---
+
+✅ REKOMENDASI
+
+Ingin Tambah	Lakukan Ini
+
+Input baru	Tambahkan <input> dan tambahkan variabel & JSON di JS
+Validasi	Tambahkan if (!email.includes("@")) sebelum fetch()
+Gaya (CSS)	Tambahkan <style> dan buat aturan seperti input { ... }
+Notifikasi	Gunakan alert() atau ubah teks #status
+
+
+
+---
+
+Kalau kamu ingin saya bantu buatkan template .txt siap unduh, tinggal bilang. Saya juga bisa bantu buat versi "tanpa internet" (offline demo) jika kamu butuh.
+
+                                                             
