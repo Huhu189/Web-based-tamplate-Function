@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <style>
+      body {
+        font-family: sans-serif;
+        background: #f9f9f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      form {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      input, textarea {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1em;
+        resize: vertical;
+      }
+
+      button {
+        padding: 10px;
+        background: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #218838;
+      }
+
+      #status {
+        font-size: 0.9em;
+        text-align: center;
+        margin-top: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <form id="form">
+      <input type="text" id="name" placeholder="Nama" required>
+      <textarea id="message" placeholder="Pesan" required></textarea>
+      <button type="submit">Kirim</button>
+      <p id="status"></p>
+    </form>
+
+    <script>
+      const scriptURL = 'YOUR_GOOGLE_SCRIPT_URL';
+
+      document.getElementById('form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const message = document.getElementById('message').value;
+
+        fetch(scriptURL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, message })
+        })
+        .then(() => {
+          document.getElementById('status').innerText = "Pesan terkirim!";
+          document.getElementById('form').reset();
+        })
+        .catch(() => {
+          document.getElementById('status').innerText = "Gagal mengirim.";
+        });
+      });
+    </script>
+  </body>
+</html>yg 
